@@ -5,6 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Spartan Warriors</title>
   <link rel="stylesheet" href="Warriors.css" />
+  <style>
+#summarizeBtn {
+  padding: 10px 20px;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#summarizeBtn:hover {
+  background-color: #005fcc;
+}
+
+.summary-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 400px;
+  transform: translate(-50%, -50%);
+  background-color: #f9f9f9;
+  border: 2px solid #0077ff;
+  border-radius: 12px;
+  padding: 20px;
+  z-index: 9999;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+}
+
+.summary-popup h3 {
+  margin-top: 0;
+  color: #0077ff;
+}
+
+.close-btn {
+  margin-top: 15px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: #c0392b;
+}
+</style>
+
 </head>
 <body>
   <header>
@@ -23,6 +76,14 @@
     <section class="hero">
       <h1>Meet the Spartan Warriors</h1>
       <p>The strongest soldiers in ancient Greece. Learn how they trained, dressed, and fought for glory!</p>
+      <button onclick="summarizeText()" id="summarizeBtn">Summarize</button>
+
+<div id="summaryBox" class="summary-popup">
+  <h3>Summary</h3>
+  <p id="summaryContent"></p>
+  <button onclick="closeSummary()" class="close-btn">Close</button>
+</div>
+
     </section>
 
     <section class="section">
@@ -93,5 +154,18 @@
   <footer>
     <p>© 2025 Sparta for Kids. Glory belongs to the brave!</p>
   </footer>
+  <script>
+function summarizeText() {
+  const summary = "Spartan warriors were trained from childhood through a rigorous military system called the agoge. Boys began training at age 7, learning endurance, combat skills, obedience, and discipline. Spartan soldiers, or hoplites, were heavily armed and fought in a phalanx formation, valuing unity and bravery. Military service was a lifelong duty, and dying in battle was seen as the highest honor.";
+  
+  document.getElementById("summaryContent").innerText = summary;
+  document.getElementById("summaryBox").style.display = "block";
+}
+
+function closeSummary() {
+  document.getElementById("summaryBox").style.display = "none";
+}
+</script>
+
 </body>
 </html>
