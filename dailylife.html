@@ -5,6 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Daily Life in Sparta</title>
   <link rel="stylesheet" href="dailylife.css" />
+  <style>
+#summarizeBtn {
+  padding: 10px 20px;
+  background-color: #0077ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#summarizeBtn:hover {
+  background-color: #005fcc;
+}
+
+.summary-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 400px;
+  transform: translate(-50%, -50%);
+  background-color: #f9f9f9;
+  border: 2px solid #0077ff;
+  border-radius: 12px;
+  padding: 20px;
+  z-index: 9999;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  font-family: Arial, sans-serif;
+}
+
+.summary-popup h3 {
+  margin-top: 0;
+  color: #0077ff;
+}
+
+.close-btn {
+  margin-top: 15px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background-color: #c0392b;
+}
+</style>
+
 </head>
 <body>
   <header>
@@ -23,8 +76,13 @@
     <section class="intro">
       <h1>Daily Life in Sparta</h1>
       <p>What was it like to grow up in ancient Sparta? Let’s explore their schools, food, and routines!</p>
-      <button onclick="summarizeText()" style="margin: 10px; padding: 8px 16px;">Summarize</button>
-<div id="summary" style="margin-top: 20px; font-style: italic;"></div>
+      <button onclick="summarizeText()" id="summarizeBtn">Summarize</button>
+
+<div id="summaryBox" class="summary-popup">
+  <h3>Summary</h3>
+  <p id="summaryContent"></p>
+  <button onclick="closeSummary()" class="close-btn">Close</button>
+</div>
 
     </section>
 
@@ -66,15 +124,17 @@
 
   <script>
 function summarizeText() {
-  // Get the main content (adjust the selector as needed)
-  const content = document.querySelector("main, article, .content, body").innerText;
-
-  // Basic summary logic: grab the first 3 sentences
-  const sentences = content.match(/[^\.!\?]+[\.!\?]+/g) || [];
-  const summary = sentences.slice(0, 3).join(" ");
-
-  document.getElementById("summary").innerText = "Summary: " + summary;
+  const summary = "Daily life in Sparta was centered around discipline, strength, and loyalty to the state. Boys were trained from a young age in harsh military schools called the agoge, while girls were educated at home with a focus on physical fitness and domestic skills. Spartan society was highly structured, with citizens expected to put Sparta’s needs above personal desires.";
+  
+  document.getElementById("summaryContent").innerText = summary;
+  document.getElementById("summaryBox").style.display = "block";
 }
+
+function closeSummary() {
+  document.getElementById("summaryBox").style.display = "none";
+}
+</script>
+
 </script>
 </body>
 </html>
