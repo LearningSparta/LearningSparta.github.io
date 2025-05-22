@@ -8,6 +8,29 @@
     <link rel="icon" type="image/x-icon" href="Icon.jpg">
 
   <style>
+    .warrior-scroll-container {
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  height: 300px;
+  width: auto;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.warrior {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.warrior.show {
+  opacity: 1;
+}
+
     .video-wrapper {
       position: relative;
       padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -587,6 +610,11 @@
     </div>
   </div>
 </section>
+<div class="warrior-scroll-container">
+  <img src="young-spartan.png" class="warrior warrior-1">
+  <img src="adult-spartan.png" class="warrior warrior-2">
+  <img src="veteran-spartan.png" class="warrior warrior-3">
+</div>
 
 
   </main>
@@ -718,6 +746,29 @@
   });
 </script>
 
+<script>
+  const warriors = [
+    document.querySelector('.warrior-1'),
+    document.querySelector('.warrior-2'),
+    document.querySelector('.warrior-3')
+  ];
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const totalHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollProgress = scrollY / totalHeight;
+
+    warriors.forEach(w => w.classList.remove('show'));
+
+    if (scrollProgress < 0.33) {
+      warriors[0].classList.add('show'); // Young
+    } else if (scrollProgress < 0.66) {
+      warriors[1].classList.add('show'); // Adult
+    } else {
+      warriors[2].classList.add('show'); // Veteran
+    }
+  });
+</script>
   
 
 
