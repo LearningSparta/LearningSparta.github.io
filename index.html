@@ -389,6 +389,53 @@
     transform: translateY(0);
     opacity: 1;
   }
+    .spartan-glossary {
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #f8f8f8;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.spartan-glossary h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #b22222;
+}
+
+.glossary-item {
+  margin-bottom: 1rem;
+}
+
+.glossary-term {
+  background-color: #800000;
+  color: white;
+  padding: 1rem;
+  width: 100%;
+  text-align: left;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.glossary-term:hover {
+  background-color: #a52a2a;
+}
+
+.glossary-definition {
+  padding: 1rem;
+  background-color: #fff;
+  border-left: 4px solid #800000;
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  display: none;
+}
+
 </style>
 
 </head>
@@ -513,6 +560,34 @@
     <p>This is for Mr. Sylvesters Class.</p>
   </div>
 </section>
+    <section class="spartan-glossary">
+  <h2>🛡️ Spartan Glossary</h2>
+  <div class="glossary-item">
+    <button class="glossary-term">Phalanx</button>
+    <div class="glossary-definition">
+      A tight infantry formation used by Spartan warriors to create a shield wall in battle.
+    </div>
+  </div>
+  <div class="glossary-item">
+    <button class="glossary-term">Helot</button>
+    <div class="glossary-definition">
+      A member of the enslaved population in Sparta, who worked the land and served Spartan citizens.
+    </div>
+  </div>
+  <div class="glossary-item">
+    <button class="glossary-term">Agoge</button>
+    <div class="glossary-definition">
+      The rigorous training and education program all Spartan boys went through to become soldiers.
+    </div>
+  </div>
+  <div class="glossary-item">
+    <button class="glossary-term">Hoplon</button>
+    <div class="glossary-definition">
+      The large round shield carried by Spartan hoplites (soldiers), often marked with the Greek letter Lambda.
+    </div>
+  </div>
+</section>
+
 
   </main>
 
@@ -632,7 +707,18 @@
 
   window.addEventListener('scroll', revealOnScroll);
 </script>
+<script>
+  const terms = document.querySelectorAll('.glossary-term');
 
+  terms.forEach(term => {
+    term.addEventListener('click', () => {
+      const definition = term.nextElementSibling;
+      definition.style.display = definition.style.display === 'block' ? 'none' : 'block';
+    });
+  });
+</script>
+
+  
 
 
 </body>
