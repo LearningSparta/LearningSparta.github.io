@@ -6,6 +6,31 @@
   <title>Daily Life in Sparta</title>
   <link rel="stylesheet" href="dailylife.css" />
   <style>
+    body {
+      cursor: url('cursor.cur'), auto;
+    }
+ .warrior-scroll-container {
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  height: 300px;
+  width: auto;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.warrior {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.warrior.show {
+  opacity: 1;
+}
 #summarizeBtn {
   padding: 10px 20px;
   background-color: #0077ff;
@@ -116,6 +141,11 @@
       <h2>Homes and Clothes</h2>
       <p>In daillly life, Spartans, both men and women, wore simple clothes (chitons or peplos). These tunics were made of wool or linen and could be worn at various lengths, with women wearing them to their ankles and men to their knees. Spartans also wore cloaks (himations or chlamys). Spartan homes were simple, one or two-story structures built with dried mud bricks and clay roof tiles. They had a central courtyard. Spartan men lived in barracks until the age of 30, spending most of their time there training and serving in the army. </p>
     </section>
+    <div class="warrior-scroll-container">
+  <img src="young-spartan.png" class="warrior warrior-1">
+  <img src="adult-spartan.png" class="warrior warrior-2">
+  <img src="veteran-spartan.png" class="warrior warrior-3">
+</div>
   </main>
 
   <footer>
@@ -144,6 +174,29 @@ function closeSummary() {
     clickSound.play().catch(e => {
       // Prevent error if not allowed yet (e.g., autoplay block)
     });
+  });
+</script>
+  <script>
+  const warriors = [
+    document.querySelector('.warrior-1'),
+    document.querySelector('.warrior-2'),
+    document.querySelector('.warrior-3')
+  ];
+
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const totalHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollProgress = scrollY / totalHeight;
+
+    warriors.forEach(w => w.classList.remove('show'));
+
+    if (scrollProgress < 0.33) {
+      warriors[0].classList.add('show'); // Young
+    } else if (scrollProgress < 0.66) {
+      warriors[1].classList.add('show'); // Adult
+    } else {
+      warriors[2].classList.add('show'); // Veteran
+    }
   });
 </script>
 </body>
