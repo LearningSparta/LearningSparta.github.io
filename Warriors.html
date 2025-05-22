@@ -9,6 +9,29 @@
     body {
       cursor: url('cursor.cur'), auto;
     }
+     .warrior-scroll-container {
+  position: fixed;
+  top: 10%;
+  right: 5%;
+  height: 300px;
+  width: auto;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.warrior {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.warrior.show {
+  opacity: 1;
+}
+
 #summarizeBtn {
   padding: 10px 20px;
   background-color: #0077ff;
